@@ -15,17 +15,17 @@ const StepOne = ({props}) => {
 
         <div className="pt-10">
           <div className="w-[416px] h-[68px]">
-            <p className="text-[14px] font-bold">First name</p>
+            <p className="text-[14px] font-bold">First name <span className="text-red-700">*</span></p>
             <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="text" placeholder="Your First Name"></input>
           </div>
 
           <div className="mt-2">
-            <p className="text-[14px] font-bold">Last name</p>
+            <p className="text-[14px] font-bold">Last name <span className="text-red-700">*</span></p>
             <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="text" placeholder="Your Last Name"></input>
           </div>
 
           <div className="mt-2">
-            <p className="text-[14px] font-bold">Username</p>
+            <p className="text-[14px] font-bold">Username <span className="text-red-700">*</span></p>
             <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="text" placeholder="Your Username"></input>
           </div>
         </div>
@@ -51,22 +51,22 @@ const StepTwo = ({props1}) => {
 
         <div className="pt-10">
           <div className="w-[416px] h-[68px]">
-            <p className="text-[14px] font-bold">Email</p>
+            <p className="text-[14px] font-bold">Email <span className="text-red-700">*</span></p>
             <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="text" placeholder="Your email"></input>
           </div>
 
           <div className="mt-2">
-            <p className="text-[14px] font-bold">Phone number</p>
+            <p className="text-[14px] font-bold">Phone number <span className="text-red-700">*</span></p>
             <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="text" placeholder="Your phone number here"></input>
           </div>
 
           <div className="mt-2">
-            <p className="text-[14px] font-bold">Password</p>
+            <p className="text-[14px] font-bold">Password <span className="text-red-700">*</span></p>
             <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="password" placeholder="Your password"></input>
           </div>
 
           <div className="mt-2">
-            <p className="text-[14px] font-bold">Confirm password</p>
+            <p className="text-[14px] font-bold">Confirm password <span className="text-red-700">*</span></p>
             <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="password" placeholder="Confirm your password"></input>
           </div>
         </div>
