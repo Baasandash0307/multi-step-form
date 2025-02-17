@@ -1,105 +1,37 @@
-'use client'
+"use client";
+import { useState } from "react";
+import { Header } from "./components/header";
+import { UserInformation } from "./components/userInformation";
+import { Continue } from "./components/Continue";
+import { ContactInformation } from "./components/ContactInformation";
 
-import { useState } from "react"
-
-const StepOne = ({props}) => {
-  return <div className="h-screen bg-gray-100 flex justify-center items-center">
-    <div className="w-[480px] h-[655] bg-white rounded-[10px]">
-      <div className="w-[480px] h-[655] py-4 px-8">
-
-        <div>
-          <img className="w-[60px] h-[60px] bold" src="logo.png"></img>
-          <p className="text-[26px] font-bold">Join us! 😎</p>
-          <p className="text-gray-400 text-[18px]">Please provide all current information accurately.</p>
-        </div>
-
-        <div className="pt-10">
-          <div className="w-[416px] h-[68px]">
-            <p className="text-[14px] font-bold">First name <span className="text-red-700">*</span></p>
-            <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="text" placeholder="Your First Name"></input>
-          </div>
-
-          <div className="mt-2">
-            <p className="text-[14px] font-bold">Last name <span className="text-red-700">*</span></p>
-            <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="text" placeholder="Your Last Name"></input>
-          </div>
-
-          <div className="mt-2">
-            <p className="text-[14px] font-bold">Username <span className="text-red-700">*</span></p>
-            <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="text" placeholder="Your Username"></input>
-          </div>
-        </div>
-
-        <div className="flex justify-center mt-40 mb-5">
-          <button className="bg-black text-white h-[44px] w-[416px] rounded-[8px] font-bold" onClick={props} type="button"> Continue</button>
-        </div>
-      </div>
-    </div>
-  </div>
-}
-
-const StepTwo = ({props1}) => {
-  return <div className="h-screen bg-gray-100 flex justify-center items-center">
-    <div className="w-[480px] h-[655] bg-white rounded-[10px]">
-      <div className="w-[480px] h-[655] py-4 px-8">
-
-        <div>
-          <img className="w-[60px] h-[60px] bold" src="logo.png"></img>
-          <p className="text-[26px] font-bold">Join us! 😎</p>
-          <p className="text-gray-400 text-[18px]">Please provide all current information accurately.</p>
-        </div>
-
-        <div className="pt-10">
-          <div className="w-[416px] h-[68px]">
-            <p className="text-[14px] font-bold">Email <span className="text-red-700">*</span></p>
-            <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="text" placeholder="Your email"></input>
-          </div>
-
-          <div className="mt-2">
-            <p className="text-[14px] font-bold">Phone number <span className="text-red-700">*</span></p>
-            <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="text" placeholder="Your phone number here"></input>
-          </div>
-
-          <div className="mt-2">
-            <p className="text-[14px] font-bold">Password <span className="text-red-700">*</span></p>
-            <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="password" placeholder="Your password"></input>
-          </div>
-
-          <div className="mt-2">
-            <p className="text-[14px] font-bold">Confirm password <span className="text-red-700">*</span></p>
-            <input className="h-[44px] w-[416px] border-[2px] border-solid rounded-[5px] placeholder:pl-3" type="password" placeholder="Confirm your password"></input>
-          </div>
-        </div>
-
-        <div className="flex justify-between mt-20 mb-5 ">
-          <button className="bg-white text-black h-[44px] w-[128px] rounded-[8px] font-bold border-[2px]" onClick={props1} type="button"> Back</button>
-          <button className="bg-black text-white h-[44px] w-[280px] rounded-[8px] font-bold" type="button"> Continue</button>
-        </div>
-      </div>
-    </div>
-  </div>
-}
 export default function Home() {
-
   const [currentStep, setCurrentStep] = useState(0);
 
-  const Component = [StepOne, StepTwo][currentStep]
-
   const nextStep = () => {
-    if (1 > currentStep) {
-      setCurrentStep(currentStep + 1);
-    }
+      setCurrentStep((prev) => prev + 1);
   }
-
   const previousStep = () => {
-    setCurrentStep(currentStep - 1);
-  }
+    setCurrentStep((prev) => prev - 1);
+}
 
   return (
-    <div>
-      <form>
-        <Component props = {nextStep} props1 = {previousStep} ></Component>
-      </form>
+    <div className="h-screen bg-gray-100 flex justify-center items-center">
+      <div className="w-[480px] h-[655] bg-white rounded-[10px]">
+        <div className="w-[480px] h-[655] py-4 px-8">
+          <div>
+            <Header></Header>
+          </div>
+          <div className="pt-10">
+           {currentStep == 0 && <UserInformation></UserInformation>}
+           {currentStep == 1 && <ContactInformation></ContactInformation>}
+          </div>
+
+          <div className="flex justify-center mt-40 mb-5">
+            <Continue currentStep = {currentStep + 1} nextStep = {nextStep}></Continue>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
