@@ -71,7 +71,7 @@ const StepTwo = ({props1}) => {
           </div>
         </div>
 
-        <div className="flex justify-between mt-40 mb-5 ">
+        <div className="flex justify-between mt-20 mb-5 ">
           <button className="bg-white text-black h-[44px] w-[128px] rounded-[8px] font-bold border-[2px]" onClick={props1} type="button"> Back</button>
           <button className="bg-black text-white h-[44px] w-[280px] rounded-[8px] font-bold" type="button"> Continue</button>
         </div>
