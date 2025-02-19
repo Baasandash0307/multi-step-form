@@ -4,6 +4,7 @@ import { Header } from "./components/header";
 import { UserInformation } from "./components/userInformation";
 import { Continue } from "./components/Continue";
 import { ContactInformation } from "./components/ContactInformation";
+import { LastPage } from "./components/LastPage";
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -23,11 +24,12 @@ export default function Home() {
             <Header></Header>
           </div>
           <div className="pt-10">
-           {currentStep == 0 && <UserInformation></UserInformation>}
-           {currentStep == 1 && <ContactInformation></ContactInformation>}
+           {currentStep === 0 && <UserInformation></UserInformation>}
+           {currentStep === 1 && <ContactInformation></ContactInformation>}
+           {currentStep === 2 && <LastPage></LastPage>}
           </div>
 
-          <div className="flex justify-center mt-40 mb-5">
+          <div className="flex justify-center mt-[100px] mb-5">
             <Continue currentStep = {currentStep + 1} nextStep = {nextStep}></Continue>
           </div>
         </div>
