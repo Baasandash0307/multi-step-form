@@ -11,9 +11,9 @@ export default function Home() {
   const [currentStep, setCurrentStep] = useState(0);
 
   const [formValues, setFormValues] = useState({
-    firstName: null,
-    lastName: null,
-    userName: null,
+    firstName: "",
+    lastName: "",
+    userName: "",
     email: "",
     phoneNumber: "",
     password: "",
@@ -31,32 +31,12 @@ export default function Home() {
   });
 
   const nextStep = () => {
-
-    if(!formValues.firstName){
-      setFormErrors((prev) => ({...prev, firstName: "Энэ талбар хоосон байж болохгүй!"}))
-      return;
-    }
-
-    if(!formValues.lastName){
-      setFormErrors((prev) => ({...prev, lastName: "Энэ талбар хоосон байж болохгүй!"}))
-      return;
-    }
-
-    if(!formValues.userName){
-      setFormErrors((prev) => ({...prev, userName: "Энэ талбар хоосон байж болохгүй!"}))
-      return;
-    }
-
-    if(!formValues.firstName || !formValues.lastName || !formValues.userName){
-      return;
-    }
-
+    event.preventDefault();
     setCurrentStep((prev) => prev + 1);
   }
 
-  const previousStep = () => {
-    setCurrentStep((prev) => prev - 1);
-  }
+  const steps = [UserInformation];
+  const component = steps[currentStep]
 
   return (
     <div className="h-screen bg-gray-100 flex justify-center items-center">
@@ -66,15 +46,15 @@ export default function Home() {
             <div>
               <Header></Header>
             </div>
-            {currentStep === 0 && <UserInformation formValues = {formValues} setFormValues = {setFormValues} formErrors = {formErrors}></UserInformation>}
-            {currentStep === 1 && <ContactInformation formValues = {formValues} setFormValues = {setFormValues}></ContactInformation>}
+            {currentStep === 0 && <UserInformation formValues = {formValues} setFormValues = {setFormValues} formErrors = {formErrors} setFormErrors = {setFormErrors} currentStep={currentStep} nextStep={nextStep}></UserInformation>}
+            {currentStep === 1 && <ContactInformation formValues = {formValues} setFormValues = {setFormValues} formErrors = {formErrors} setFormErrors = {setFormErrors} currentStep={currentStep} nextStep={nextStep}></ContactInformation>}
             {currentStep === 2 && <LastPage></LastPage>}
           </div>
 
 
-          <div className="flex justify-center mt-[100px] mb-5">
+          {/* <div className="flex justify-center mt-[100px] mb-5">
             <Continue currentStep={currentStep + 1} nextStep={nextStep} previousStep={previousStep} ></Continue>
-          </div>
+          </div> */}
           <div>
             {currentStep === 3 && <Footer></Footer>}
           </div>

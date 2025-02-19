@@ -1,18 +1,52 @@
-export const UserInformation = (props) => {
-  const onFirstNameChange = (event) => {
-    props.setFormValues((prev) => ({ ...prev, firstName: event.target.value }));
+import { Continue } from "./Continue";
+
+export const UserInformation = ({
+  formValues,
+  setFormValues,
+  formErrors,
+  setFormErrors,
+  currentStep,
+  setCurrentStep,
+  nextStep,
+}) => {
+  const onChange = (event) => {
+    setFormValues((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
   };
 
-  const onLastNameChange = (event) => {
-    props.setFormValues((prev) => ({ ...prev, lastName: event.target.value }));
-  };
+  const handleNext = (event) => {
+    event.preventDefault();
+    console.log(formValues);
 
-  const onUserNameChange = (event) => {
-    props.setFormValues((prev) => ({ ...prev, userName: event.target.value }));
+    if (!formValues.firstName) {
+      setFormErrors((prev) => ({
+        ...prev,
+        firstName: "Энэ талбар хоосон байж болохгүй!",
+      }));
+      return;
+    }
+
+    if (!formValues.lastName) {
+      setFormErrors((prev) => ({
+        ...prev,
+        lastName: "Энэ талбар хоосон байж болохгүй!",
+      }));
+      return;
+    }
+
+    if (!formValues.userName) {
+      setFormErrors((prev) => ({
+        ...prev,
+        userName: "Энэ талбар хоосон байж болохгүй!",
+      }));
+      return;
+    }
   };
 
   return (
-    <>
+    <form onSubmit={handleNext}>
       <div className="w-[416px] h-[68px]">
         <p className="text-[14px] font-bold text-[#334155]">
           First name <span className="text-red-700">*</span>
@@ -22,12 +56,12 @@ export const UserInformation = (props) => {
           type="text"
           name="firstName"
           placeholder="Your First Name"
-          onChange={onFirstNameChange}
+          onChange={onChange}
         ></input>
       </div>
-      {
-        props.formErrors.firstName && <p className="text-red-600">{props.formErrors.firstName}</p>
-      }
+      {formErrors.firstName && (
+        <p className="text-red-600">{formErrors.firstName}</p>
+      )}
 
       <div className="mt-2">
         <p className="text-[14px] font-bold text-[#334155]">
@@ -38,12 +72,12 @@ export const UserInformation = (props) => {
           type="text"
           name="lastName"
           placeholder="Your Last Name"
-          onChange={onLastNameChange}
+          onChange={onChange}
         ></input>
       </div>
-      {
-        props.formErrors.lastName && <p className="text-red-600">{props.formErrors.lastName}</p>
-      }
+      {formErrors.lastName && (
+        <p className="text-red-600">{formErrors.lastName}</p>
+      )}
 
       <div className="mt-2">
         <p className="text-[14px] font-bold text-[#334155]">
@@ -54,12 +88,14 @@ export const UserInformation = (props) => {
           type="text"
           name="userName"
           placeholder="Your Username"
-          onChange={onUserNameChange}
+          onChange={onChange}
         ></input>
       </div>
-      {
-        props.formErrors.userName && <p className="text-red-600">{props.formErrors.userName}</p>
-      }
-    </>
+      {formErrors.userName && (
+        <p className="text-red-600">{formErrors.userName}</p>
+      )}
+
+      <Continue currentStep={currentStep}></Continue>
+    </form>
   );
 };

@@ -1,20 +1,52 @@
-export const ContactInformation = (props) => {
-  const onEmailChange = (event) => {
-    props.setFormValues((prev) => ({ ...prev, email: event.target.value }));
+import { Continue } from "./Continue";
+
+export const ContactInformation = ({
+  formValues,
+  setFormValues,
+  formErrors,
+  setFormErrors,
+  currentStep,
+  setCurrentStep,
+  nextStep,
+}) => {
+  const onChange = (event) => {
+    setFormValues((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
   };
 
-  const onPhoneNumberChange = (event) => {
-    props.setFormValues((prev) => ({ ...prev, phoneNumber: event.target.value }));
+  const handleNext = (event) => {
+    event.preventDefault();
+    console.log(formValues);
+
+    if (!formValues.firstName) {
+      setFormErrors((prev) => ({
+        ...prev,
+        firstName: "Энэ талбар хоосон байж болохгүй!",
+      }));
+      return;
+    }
+
+    if (!formValues.lastName) {
+      setFormErrors((prev) => ({
+        ...prev,
+        lastName: "Энэ талбар хоосон байж болохгүй!",
+      }));
+      return;
+    }
+
+    if (!formValues.userName) {
+      setFormErrors((prev) => ({
+        ...prev,
+        userName: "Энэ талбар хоосон байж болохгүй!",
+      }));
+      return;
+    }
   };
 
-  const onPasswordChange = (event) => {
-    props.setFormValues((prev) => ({ ...prev, password: event.target.value }));
-  };
-  const onConfirmPasswordChange = (event) => {
-    props.setFormValues((prev) => ({ ...prev, ConfirmPassword: event.target.value }));
-  };
   return (
-    <>
+    <form onSubmit={handleNext}>
       <div className="w-[416px] h-[68px]">
         <p className="text-[14px] font-bold text-[#334155]">
           Email <span className="text-red-700">*</span>
@@ -24,7 +56,7 @@ export const ContactInformation = (props) => {
           type="text"
           placeholder="Your email"
           name="email"
-          onChange={onEmailChange}
+          onChange={onChange}
         ></input>
       </div>
 
@@ -37,7 +69,7 @@ export const ContactInformation = (props) => {
           type="text"
           placeholder="Your phone number here"
           name="phoneNumber"
-          onChange={onPhoneNumberChange}
+          onChange={onChange}
         ></input>
       </div>
 
@@ -50,7 +82,7 @@ export const ContactInformation = (props) => {
           type="password"
           placeholder="Your password"
           name="ConfirmPassword"
-          onChange={onPasswordChange}
+          onChange={onChange}
         ></input>
       </div>
 
@@ -63,9 +95,11 @@ export const ContactInformation = (props) => {
           type="password"
           placeholder="Confirm your password"
           name="password"
-          onChange={onConfirmPasswordChange}
+          onChange={onChange}
         ></input>
       </div>
-    </>
+
+      <Continue currentStep={currentStep}></Continue>
+    </form>
   );
 };
