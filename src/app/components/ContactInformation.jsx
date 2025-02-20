@@ -51,7 +51,14 @@ export const ContactInformation = ({
       }));
       return;
     }
+
     nextStep();
+    if(formValues.password != formValues.ConfirmPassword && formValues.ConfirmPassword) {
+      setFormErrors((prev) => ({
+        ...prev,
+        ConfirmPassword: "Нууц үг таарахгүй байна!",
+      }));
+    }
   };
 
   return (
@@ -66,6 +73,7 @@ export const ContactInformation = ({
           placeholder="Your email"
           name="email"
           onChange={onChange}
+          value={formValues.email}
         ></input>
       </div>
       {formErrors.email && <p className="text-red-600">{formErrors.email}</p>}
@@ -80,6 +88,7 @@ export const ContactInformation = ({
           placeholder="Your phone number here"
           name="phoneNumber"
           onChange={onChange}
+          value={formValues.phoneNumber}
         ></input>
       </div>
       {formErrors.phoneNumber && <p className="text-red-600">{formErrors.phoneNumber}</p>}
@@ -94,6 +103,7 @@ export const ContactInformation = ({
           placeholder="Your password"
           name="password"
           onChange={onChange}
+          value={formValues.password}
         ></input>
       </div>
       {formErrors.password && <p className="text-red-600">{formErrors.password}</p>}
@@ -108,6 +118,7 @@ export const ContactInformation = ({
           placeholder="Confirm your password"
           name="ConfirmPassword"
           onChange={onChange}
+          value={formValues.ConfirmPassword}
         ></input>
       </div>
       {formErrors.ConfirmPassword && <p className="text-red-600">{formErrors.ConfirmPassword}</p>}

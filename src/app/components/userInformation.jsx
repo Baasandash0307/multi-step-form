@@ -60,6 +60,7 @@ export const UserInformation = ({
           name="firstName"
           placeholder="Your First Name"
           onChange={onChange}
+          value={formValues.firstName}
         ></input>
       </div>
       {formErrors.firstName && <p className="text-red-600">{formErrors.firstName}</p>}
@@ -74,6 +75,7 @@ export const UserInformation = ({
           name="lastName"
           placeholder="Your Last Name"
           onChange={onChange}
+          value={formValues.lastName}
         ></input>
       </div>
       {formErrors.lastName && (
@@ -90,6 +92,7 @@ export const UserInformation = ({
           name="userName"
           placeholder="Your Username"
           onChange={onChange}
+          value={formValues.userName}
         ></input>
       </div>
       {formErrors.userName && (
