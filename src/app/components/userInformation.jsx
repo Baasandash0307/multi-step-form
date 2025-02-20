@@ -8,6 +8,7 @@ export const UserInformation = ({
   currentStep,
   setCurrentStep,
   nextStep,
+  prevStep
 }) => {
   const onChange = (event) => {
     setFormValues((prev) => ({
@@ -43,6 +44,8 @@ export const UserInformation = ({
       }));
       return;
     }
+
+    nextStep();
   };
 
   return (
@@ -59,9 +62,7 @@ export const UserInformation = ({
           onChange={onChange}
         ></input>
       </div>
-      {formErrors.firstName && (
-        <p className="text-red-600">{formErrors.firstName}</p>
-      )}
+      {formErrors.firstName && <p className="text-red-600">{formErrors.firstName}</p>}
 
       <div className="mt-2">
         <p className="text-[14px] font-bold text-[#334155]">
@@ -95,7 +96,7 @@ export const UserInformation = ({
         <p className="text-red-600">{formErrors.userName}</p>
       )}
 
-      <Continue currentStep={currentStep}></Continue>
+      <Continue prevStep={prevStep} nextStep={handleNext} currentStep={currentStep + 1}></Continue>
     </form>
   );
 };

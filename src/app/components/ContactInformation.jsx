@@ -8,6 +8,7 @@ export const ContactInformation = ({
   currentStep,
   setCurrentStep,
   nextStep,
+  prevStep
 }) => {
   const onChange = (event) => {
     setFormValues((prev) => ({
@@ -18,31 +19,39 @@ export const ContactInformation = ({
 
   const handleNext = (event) => {
     event.preventDefault();
-    console.log(formValues);
 
-    if (!formValues.firstName) {
+    if (!formValues.email) {
       setFormErrors((prev) => ({
         ...prev,
-        firstName: "Энэ талбар хоосон байж болохгүй!",
+        email: "Энэ талбар хоосон байж болохгүй!",
       }));
       return;
     }
 
-    if (!formValues.lastName) {
+    if (!formValues.phoneNumber) {
       setFormErrors((prev) => ({
         ...prev,
-        lastName: "Энэ талбар хоосон байж болохгүй!",
+        phoneNumber: "Энэ талбар хоосон байж болохгүй!",
       }));
       return;
     }
 
-    if (!formValues.userName) {
+    if (!formValues.password) {
       setFormErrors((prev) => ({
         ...prev,
-        userName: "Энэ талбар хоосон байж болохгүй!",
+        password: "Энэ талбар хоосон байж болохгүй!",
       }));
       return;
     }
+
+    if (!formValues.ConfirmPassword) {
+      setFormErrors((prev) => ({
+        ...prev,
+        ConfirmPassword: "Энэ талбар хоосон байж болохгүй!",
+      }));
+      return;
+    }
+    nextStep();
   };
 
   return (
@@ -59,6 +68,7 @@ export const ContactInformation = ({
           onChange={onChange}
         ></input>
       </div>
+      {formErrors.email && <p className="text-red-600">{formErrors.email}</p>}
 
       <div className="mt-2">
         <p className="text-[14px] font-bold text-[#334155]">
@@ -72,6 +82,7 @@ export const ContactInformation = ({
           onChange={onChange}
         ></input>
       </div>
+      {formErrors.phoneNumber && <p className="text-red-600">{formErrors.phoneNumber}</p>}
 
       <div className="mt-2">
         <p className="text-[14px] font-bold text-[#334155]">
@@ -81,10 +92,11 @@ export const ContactInformation = ({
           className="h-[44px] w-[416px] border-[2px] border-solid rounded-[10px] placeholder: pl-3"
           type="password"
           placeholder="Your password"
-          name="ConfirmPassword"
+          name="password"
           onChange={onChange}
         ></input>
       </div>
+      {formErrors.password && <p className="text-red-600">{formErrors.password}</p>}
 
       <div className="mt-2">
         <p className="text-[14px] font-bold text-[#334155]">
@@ -94,12 +106,13 @@ export const ContactInformation = ({
           className="h-[44px] w-[416px] border-[2px] border-solid rounded-[10px] placeholder: pl-3"
           type="password"
           placeholder="Confirm your password"
-          name="password"
+          name="ConfirmPassword"
           onChange={onChange}
         ></input>
       </div>
+      {formErrors.ConfirmPassword && <p className="text-red-600">{formErrors.ConfirmPassword}</p>}
 
-      <Continue currentStep={currentStep}></Continue>
+      <Continue prevStep={prevStep} nextStep={handleNext} currentStep={currentStep + 1}></Continue>
     </form>
   );
 };

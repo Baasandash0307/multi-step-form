@@ -1,3 +1,4 @@
+
 export const Footer = () => {
     return (
         <div className="w-[480px] h-[193px]">
