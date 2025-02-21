@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import { useState } from "react";
 import { Header } from "./components/header";
 import { UserInformation } from "./components/userInformation";
@@ -35,25 +35,64 @@ export default function Home() {
 
   const nextStep = () => {
     setCurrentStep((prev) => prev + 1);
-  }
+  };
+
   const prevStep = () => {
     setCurrentStep((prev) => prev - 1);
-  }
+  };
+
+  const getSlideClass = () => {
+    return currentStep === 0 ? "" : "slide-in";
+    return currentStep === 1 ? "" : "slide-in";
+  };
+
   return (
     <div className="h-screen bg-gray-100 flex justify-center items-center">
-      <div className="w-[480px] h-[655] bg-white rounded-[10px]">
+      <div className={"w-[480px] h-[655] bg-white rounded-[10px] " + getSlideClass()}>
         <div className="w-[480px] h-[655] py-4 px-8">
-          <div className="pt-10" >
+          <div className="pt-10">
             <div>
-              {currentStep !==3 &&<Header></Header>}
+              {currentStep !== 3 && <Header />}
             </div>
-            {currentStep === 0 && <UserInformation formValues={formValues} setFormValues={setFormValues} formErrors={formErrors} setFormErrors={setFormErrors} currentStep={currentStep} nextStep={nextStep} prevStep={prevStep}></UserInformation>}
-            {currentStep === 1 && <ContactInformation formValues={formValues} setFormValues={setFormValues} formErrors={formErrors} setFormErrors={setFormErrors} currentStep={currentStep} nextStep={nextStep} prevStep={prevStep}></ContactInformation>}
-            {currentStep === 2 && <LastPage formValues={formValues} setFormValues={setFormValues} formErrors={formErrors} setFormErrors={setFormErrors} currentStep={currentStep} nextStep={nextStep} prevStep={prevStep}></LastPage>}
+            <div>
+              {currentStep === 0 && (
+                <UserInformation
+                  formValues={formValues}
+                  setFormValues={setFormValues}
+                  formErrors={formErrors}
+                  setFormErrors={setFormErrors}
+                  currentStep={currentStep}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              )}
+              {currentStep === 1 && (
+                <ContactInformation
+                  formValues={formValues}
+                  setFormValues={setFormValues}
+                  formErrors={formErrors}
+                  setFormErrors={setFormErrors}
+                  currentStep={currentStep}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              )}
+              {currentStep === 2 && (
+                <LastPage
+                  formValues={formValues}
+                  setFormValues={setFormValues}
+                  formErrors={formErrors}
+                  setFormErrors={setFormErrors}
+                  currentStep={currentStep}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              )}
+            </div>
           </div>
 
           <div>
-            {currentStep === 3 && <Footer></Footer>}
+            {currentStep === 3 && <Footer />}
           </div>
         </div>
       </div>
