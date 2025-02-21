@@ -45,7 +45,7 @@ export default function Home() {
         <div className="w-[480px] h-[655] py-4 px-8">
           <div className="pt-10" >
             <div>
-              <Header></Header>
+              {currentStep !==3 &&<Header></Header>}
             </div>
             {currentStep === 0 && <UserInformation formValues={formValues} setFormValues={setFormValues} formErrors={formErrors} setFormErrors={setFormErrors} currentStep={currentStep} nextStep={nextStep} prevStep={prevStep}></UserInformation>}
             {currentStep === 1 && <ContactInformation formValues={formValues} setFormValues={setFormValues} formErrors={formErrors} setFormErrors={setFormErrors} currentStep={currentStep} nextStep={nextStep} prevStep={prevStep}></ContactInformation>}

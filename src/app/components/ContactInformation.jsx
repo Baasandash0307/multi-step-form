@@ -6,7 +6,6 @@ export const ContactInformation = ({
   formErrors,
   setFormErrors,
   currentStep,
-  setCurrentStep,
   nextStep,
   prevStep
 }) => {
